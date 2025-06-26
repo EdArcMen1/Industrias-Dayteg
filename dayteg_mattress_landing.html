@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Industrias Dayteg - El Descanso Perfecto Te Espera</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ffd700, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.5)); }
+            to { filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.8)); }
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #ffd700;
+            transform: translateY(-2px);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: linear-gradient(45deg, #ffd700, #ff6b6b);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(30, 60, 114, 0.9), rgba(42, 82, 152, 0.9)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600"><defs><linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%23667db6;stop-opacity:1" /><stop offset="100%" style="stop-color:%230082c8;stop-opacity:1" /></linearGradient></defs><rect width="1000" height="600" fill="url(%23bg)"/></svg>');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20"><defs><pattern id="bed" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><rect width="20" height="20" fill="none"/><path d="M2,10 Q10,5 18,10 Q10,15 2,10" stroke="rgba(255,255,255,0.1)" stroke-width="0.5" fill="none"/></pattern></defs><rect width="100" height="20" fill="url(%23bed)"/></svg>');
+            opacity: 0.1;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            z-index: 2;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ffd700, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: slideInUp 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: slideInUp 1s ease-out 0.3s both;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background: linear-gradient(45deg, #ff6b6b, #ffd700);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+            animation: slideInUp 1s ease-out 0.6s both;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 107, 107, 0.4);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(45deg, #ff6b6b, #ffd700);
+            border-radius: 2px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(45deg, #ff6b6b, #ffd700, #4ecdc4);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1rem;
+            background: linear-gradient(45deg, #ff6b6b, #ffd700);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* Products Section */
+        .products {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #667db6 0%, #0082c8 100%);
+            color: white;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .product-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.5s ease;
+            opacity: 0;
+        }
+
+        .product-card:hover::before {
+            opacity: 1;
+            top: -60%;
+            left: -60%;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(45deg, #ff6b6b, #ffd700);
+            border-radius: 15px;
+            margin-bottom: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-emoji {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 4rem;
+            opacity: 0.8;
+        }
+
+        /* Product Categories */
+        .product-categories {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .category-btn {
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .category-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .category-btn.active {
+            background: linear-gradient(45deg, #ff6b6b, #ffd700);
+            border-color: #ffd700;
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .category-products {
+            display: none;
+        }
+
+        .category-products.active {
+            display: grid;
+        }
+
+        /* Combo specific styles */
+        .combo-card {
+            position: relative;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 107, 107, 0.2));
+            border: 2px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .combo-badge {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: linear-gradient(45deg, #ff6b6b, #ffd700);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            z-index: 10;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .combo-savings {
+            background: linear-gradient(45deg, #4ecdc4, #44a08d);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 15px;
+            font-weight: bold;
+            margin: 1rem 0;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(78, 205, 196, 0.3);
+        }
+
+        .price {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ffd700;
+            margin: 1rem 0;
+        }
+
+        .original-price {
+            text-decoration: line-through;
+            color: #ccc;
+            font-size: 1.2rem;
+            margin-right: 0.5rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #2c3e50 0%, #4a6741 100%);
+            color: white;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #ffd700;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .social-links {
+            margin: 1rem 0;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #ffd700;
+            transform: translateY(-3px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .features-grid,
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">INDUSTRIAS DAYTEG</div>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#productos">Productos</a></li>
+                <li><a href="#nosotros">Nosotros</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <h1>El Descanso Perfecto Te Espera</h1>
+            <p>Descubre nuestra línea premium de colchones diseñados para brindarte el mejor descanso de tu vida. Calidad, comodidad y durabilidad en cada producto.</p>
+            <a href="#productos" class="cta-button">Ver Colchones</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title fade-in">¿Por Qué Elegir Dayteg?</h2>
+            <div class="features-grid">
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">🏆</div>
+                    <h3>Calidad Premium</h3>
+                    <p>Materiales de primera calidad seleccionados para garantizar durabilidad y comodidad excepcional.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">🚚</div>
+                    <h3>Envío Gratis</h3>
+                    <p>Entrega gratuita a domicilio en toda la ciudad. Tu colchón llegará directamente a tu hogar.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Garantía Extendida</h3>
+                    <p>Garantía de 5 años en todos nuestros colchones. Tu inversión está completamente protegida.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">💰</div>
+                    <h3>Mejores Precios</h3>
+                    <p>Precios directos de fábrica sin intermediarios. La mejor relación calidad-precio del mercado.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">🌙</div>
+                    <h3>Prueba de Sueño</h3>
+                    <p>30 noches de prueba gratuita. Si no estás satisfecho, te devolvemos tu dinero.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">🔧</div>
+                    <h3>Servicio Técnico</h3>
+                    <p>Soporte técnico especializado y servicio post-venta para toda la vida útil del producto.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="productos" class="products">
+        <div class="container">
+            <h2 class="section-title fade-in">Nuestros Productos</h2>
+            
+            <!-- Product Categories -->
+            <div class="product-categories fade-in">
+                <button class="category-btn active" data-category="colchones">Colchones</button>
+                <button class="category-btn" data-category="box-tarima">Box Tarima</button>
+                <button class="category-btn" data-category="cabeceras">Cabeceras</button>
+                <button class="category-btn" data-category="combos">Combos</button>
+            </div>
+
+            <!-- Colchones -->
+            <div class="products-grid category-products active" id="colchones">
+                <div class="product-card fade-in">
+                    <div class="product-image">
+                        <div class="product-emoji">🛏️</div>
+                    </div>
+                    <h3>Colchón Comfort Plus</h3>
+                    <p>Colchón de espuma de alta densidad con sistema de ventilación avanzado. Ideal para personas que buscan firmeza y frescura.</p>
+                    <div class="price">
+                        <span class="original-price">S/ 1,200</span>
+                        S/ 899
+                    </div>
+                    <a href="#contacto" class="cta-button">Comprar Ahora</a>
+                </div>
+                <div class="product-card fade-in">
+                    <div class="product-image">
+                        <div class="product-emoji">🌙</div>
+                    </div>
+                    <h3>Colchón Memory Foam</h3>
+                    <p>Tecnología de memoria que se adapta perfectamente a tu cuerpo. Elimina puntos de presión para un descanso reparador.</p>
+                    <div class="price">
+                        <span class="original-price">S/ 1,800</span>
+                        S/ 1,399
+                    </div>
+                    <a href="#contacto" class="cta-button">Comprar Ahora</a>
+                </div>
+                <div class="product-card fade-in">
+                    <div class="product-image">
+                        <div class="product-emoji">🏥</div>
+                    </div>
+                    <h3>Colchón Orthopedic Pro</h3>
+                    <p>Diseño ortopédico recomendado por especialistas. Soporte perfecto para la columna vertebral y articulaciones.</p>
+                    <div class="price">
+                        <span class="original-price">S/ 2,200</span>
+                        S/ 1,699
+                    </div>
+                    <a href="#contacto" class="cta-button">Comprar Ahora</a>
+                </div>
+            </div>
+
+            <!-- Box Tarima -->
+            <div class="products-grid category-products" id="box-tarima">
+                <div class="product-card fade-in">
+                    <div class="product-image">
+                        <div class="product-emoji">📦</div>
+                    </div>
+                    <h3>Box Tarima Classic</h3>
+                    <p>Base sólida de madera con sistema de soporte reforzado. Diseño clásico que combina con cualquier decoración.</p>
+                    <div class="price">
+                        <span class="original-price">S/ 650</span>
+                        S/ 499
+                    </div>
+                    <a href="#contacto" class="cta-button">Comprar Ahora</a>
+                </div>
+                <div class="product-card fade-in">
+                    <div class="product-image">
+                        <div class="product-emoji">🏗️</div>
+                    </div>
+                    <h3>Box Tarima Premium</h3>
+                    <p>Base de alta resistencia con sistema de amortiguación. Estructura reforzada para mayor durabilidad y estabilidad.</p>
+                    <div class="price">
+                        <span class="original-price">S/ 900</span>
+                        S/ 699
+                    </div>
+                    <a href="#contacto" class="cta-button">Comprar Ahora</a>
+                </div>
+                <div class="product-card fade-in">
+                    <div class="product-image">
+                        <div class="product-emoji">💎</div>
+                    </div>
+                    <h3>Box Tarima Luxury</h3>
+                    <p>Base premium con acabado de lujo y sistema de soporte avanzado. Diseño elegante para dormitorios modernos.</p>
+                    <div class="price">
+                        <span class="original-price">S/ 1,200</span>
+                        S/ 899
+                    </div>
+                    <a href="#contacto" class="cta-button">Comprar Ahora</a>
+                </div>
+            </div>
+
+            <!-- Cabeceras -->
+            <div class="products-grid category-products" id="cabeceras">
+                <div class="product-card fade-in">
+                    <div class="product-image">
+                        <div class="product-emoji">🎨</div>
+                    </div>
+                    <h3>Cabecera Moderna</h3>
+                    <p>Diseño minimalista tapizada en tela premium. Perfecta para dormitorios contemporáneos con estilo sofisticado.</p>
+                    <div class="price">
+                        <span class="original-price">S/ 450</span>
+                        S/ 349
+                    </div>
+                    <a href="#contacto" class="cta-button">Comprar Ahora</a>
+                </div>
+                <div class="product-card fade-in">
+                    <div class="product-image">
+                        <div class="product-emoji">👑</div>
+                    </div>
+                    <h3>Cabecera Imperial</h3>
+                    <p>Cabecera acolchada con botones tipo capitoné. Diseño elegante que aporta distinción y confort a tu dormitorio.</p>
+                    <div class="price">
+                        <span class="original-price">S/ 680</span>
+                        S/ 529
+                    </div>
+                    <a href="#contacto" class="cta-button">Comprar Ahora</a>
+                </div>
+                <div class="product-card fade-in">
+                    <div class="product-image">
+                        <div class="product-emoji">🌟</div>
+                    </div>
+                    <h3>Cabecera Deluxe</h3>
+                    <p>Cabecera de diseño exclusivo con iluminación LED integrada. Combina funcionalidad y estética de alta gama.</p>
+                    <div class="price">
+                        <span class="original-price">S/ 950</span>
+                        S/ 749
+                    </div>
+                    <a href="#contacto" class="cta-button">Comprar Ahora</a>
+                </div>
+            </div>
+
+            <!-- Combos -->
+            <div class="products-grid category-products" id="combos">
+                <div class="product-card fade-in combo-card">
+                    <div class="product-image">
+                        <div class="product-emoji">🎁</div>
+                        <div class="combo-badge">SÚPER OFERTA</div>
+                    </div>
+                    <h3>Combo Confort Total</h3>
+                    <p>Colchón Comfort Plus + Box Tarima Classic + Cabecera Moderna. El paquete completo para tu descanso perfecto.</p>
+                    <div class="combo-savings">Ahorra S/ 500</div>
+                    <div class="price">
+                        <span class="original-price">S/ 2,300</span>
+                        S/ 1,799
+                    </div>
+                    <a href="#contacto" class="cta-button">Comprar Combo</a>
+                </div>
+                <div class="product-card fade-in combo-card">
+                    <div class="product-image">
+                        <div class="product-emoji">💫</div>
+                        <div class="combo-badge">MÁS VENDIDO</div>
+                    </div>
+                    <h3>Combo Memory Premium</h3>
+                    <p>Colchón Memory Foam + Box Tarima Premium + Cabecera Imperial. Experiencia de descanso de alta calidad.</p>
+                    <div class="combo-savings">Ahorra S/ 650</div>
+                    <div class="price">
+                        <span class="original-price">S/ 3,080</span>
+                        <span style="color: #ff6b6b; font-size: 2.2rem;">S/ 2,429</span>
+                    </div>
+                    <a href="#contacto" class="cta-button">Comprar Combo</a>
+                </div>
+                <div class="product-card fade-in combo-card">
+                    <div class="product-image">
+                        <div class="product-emoji">👑</div>
+                        <div class="combo-badge">PREMIUM</div>
+                    </div>
+                    <h3>Combo Luxury Experience</h3>
+                    <p>Colchón Orthopedic Pro + Box Tarima Luxury + Cabecera Deluxe. El máximo lujo para tu dormitorio.</p>
+                    <div class="combo-savings">Ahorra S/ 800</div>
+                    <div class="price">
+                        <span class="original-price">S/ 4,150</span>
+                        <span style="color: #ffd700; font-size: 2.2rem;">S/ 3,349</span>
+                    </div>
+                    <a href="#contacto" class="cta-button">Comprar Combo</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contacto" class="contact">
+        <div class="container">
+            <h2 class="section-title fade-in">¡Contáctanos Ahora!</h2>
+            <div class="contact-form fade-in">
+                <form>
+                    <div class="form-group">
+                        <label for="nombre">Nombre Completo</label>
+                        <input type="text" id="nombre" name="nombre" placeholder="Tu nombre completo" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="telefono">Teléfono</label>
+                        <input type="tel" id="telefono" name="telefono" placeholder="Tu número de teléfono" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="tu@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="producto">Producto de Interés</label>
+                        <select id="producto" name="producto" style="width: 100%; padding: 1rem; border: none; border-radius: 10px; background: rgba(255, 255, 255, 0.2); color: white; font-size: 1rem;">
+                            <option value="">Selecciona un producto</option>
+                            <optgroup label="Colchones">
+                                <option value="comfort">Comfort Plus</option>
+                                <option value="memory">Memory Foam</option>
+                                <option value="orthopedic">Orthopedic Pro</option>
+                            </optgroup>
+                            <optgroup label="Box Tarima">
+                                <option value="box-classic">Box Tarima Classic</option>
+                                <option value="box-premium">Box Tarima Premium</option>
+                                <option value="box-luxury">Box Tarima Luxury</option>
+                            </optgroup>
+                            <optgroup label="Cabeceras">
+                                <option value="cabecera-moderna">Cabecera Moderna</option>
+                                <option value="cabecera-imperial">Cabecera Imperial</option>
+                                <option value="cabecera-deluxe">Cabecera Deluxe</option>
+                            </optgroup>
+                            <optgroup label="Combos">
+                                <option value="combo-confort">Combo Confort Total</option>
+                                <option value="combo-memory">Combo Memory Premium</option>
+                                <option value="combo-luxury">Combo Luxury Experience</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="mensaje">Mensaje</label>
+                        <textarea id="mensaje" name="mensaje" rows="4" placeholder="Cuéntanos sobre tus necesidades de descanso..."></textarea>
+                    </div>
+                    <button type="submit" class="cta-button" style="width: 100%; margin-top: 1rem;">Solicitar Información</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Industrias Dayteg. Todos los derechos reservados.</p>
+            <div class="social-links">
+                <a href="#">📱</a>
+                <a href="#">💬</a>
+                <a href="#">📧</a>
+                <a href="#">📍</a>
+            </div>
+            <p>📞 (01) 234-5678 | 📧 ventas@industriasdayteg.com</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(30, 60, 114, 0.95)';
+                header.style.backdropFilter = 'blur(20px)';
+            } else {
+                header.style.background = 'linear-gradient(135deg, #1e3c72 0%, #2a5298 100%)';
+                header.style.backdropFilter = 'blur(10px)';
+            }
+        });
+
+        // Product category switching
+        document.querySelectorAll('.category-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove active class from all buttons and products
+                document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.category-products').forEach(p => p.classList.remove('active'));
+                
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                // Show corresponding products
+                const category = this.getAttribute('data-category');
+                document.getElementById(category).classList.add('active');
+                
+                // Re-observe new elements for scroll animations
+                document.querySelectorAll(`#${category} .fade-in`).forEach(el => {
+                    if (!el.classList.contains('visible')) {
+                        observer.observe(el);
+                    }
+                });
+            });
+        });
+
+        // Form submission
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('¡Gracias por tu interés! Nos pondremos en contacto contigo muy pronto.');
+        });
+
+        // Add dynamic interactions
+        document.querySelectorAll('.product-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
